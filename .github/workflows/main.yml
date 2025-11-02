@@ -1,0 +1,45 @@
+name: Build .NET 9 project
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Check out code
+      uses: actions/checkout@v4
+    # ---------------------
+    # 🧾 .NET 9
+    # ---------------------
+    - name: Set up .NET 9
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 9.0.x
+
+    # ---------------------
+    # 🧱 Build UserService
+    # ---------------------
+    - name: Restore dependencies
+      run: dotnet restore UserService/UserService.sln
+
+    - name: Build project
+      run: dotnet build UserService/UserService.sln --no-restore --configuration Release
+
+    - name: Run tests (if any)
+      run: dotnet test UserService/UserService.sln --no-build --verbosity normal
+
+    # ---------------------
+    # ✅ Statusmeddelanden
+    # ---------------------
+    - name: Show success message
+      if: success()
+      run: echo "✅ .NET 9 UserService build succeeded!"
+
+    - name: Show failure message
+      if: failure()
+      run: echo "❌ Build failed. Please check the logs."
