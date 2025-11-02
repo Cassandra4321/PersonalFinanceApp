@@ -1,0 +1,32 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build-resultat
+bin/
+obj/
+Debug/
+Release/
+
+# Dotnet artifacts
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# OS-filer
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node (för frontend)
+node_modules/
+dist/
+
+# IDE-specifika filer
+.vscode/
+.idea/
