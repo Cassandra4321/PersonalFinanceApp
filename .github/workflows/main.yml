@@ -25,7 +25,7 @@ jobs:
     # 🧱 Build UserService
     # ---------------------
     - name: Restore dependencies
-      run: dotnet restore UserSerivce/UserSerivce.sln
+      run: dotnet restore UserService/UserService.sln
 
     - name: Build project
       run: dotnet build UserService/UserService.sln --no-restore --configuration Release
