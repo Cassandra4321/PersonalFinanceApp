@@ -1,5 +1,5 @@
 
-namespace UserSerivce.API
+namespace UserService.API
 {
     public class Program
     {
