@@ -1,3 +1,4 @@
+using UserService.API.Extensions;
 
 namespace UserService.API
 {
@@ -8,8 +9,10 @@ namespace UserService.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddApplicationServices();
             builder.Services.AddControllers();
+
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
@@ -24,7 +27,6 @@ namespace UserService.API
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
