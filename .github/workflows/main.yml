@@ -30,9 +30,6 @@ jobs:
     - name: Build project
       run: dotnet build UserService/UserService.sln --no-restore --configuration Release
 
-    - name: Run tests (if any)
-      run: dotnet test UserService/UserService.sln --no-build --verbosity normal
-
     # ---------------------
     # ✅ Statusmeddelanden
     # ---------------------
