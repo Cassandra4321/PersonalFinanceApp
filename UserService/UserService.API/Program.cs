@@ -13,7 +13,7 @@ namespace UserService.API
             // Controllers & app services
             builder.Services.AddApplicationServices();
             builder.Services.AddControllers();
-            builder.Services.AddInfrastructure();
+            builder.Services.AddInfrastructure(builder.Configuration).AddApplicationServices();
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();

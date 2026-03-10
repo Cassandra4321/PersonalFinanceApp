@@ -54,5 +54,29 @@ namespace UserService.API.Controllers
 
             return CreatedAtAction(nameof(CreateUser), response);
         }
+
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<UserResponse>> GetUser(
+            Guid id,
+            CancellationToken cancellationToken
+        )
+        {
+            var userId = UserId.From(id);
+
+            var user = await _userRepository.GetByIdAsync(userId, cancellationToken);
+
+            if (user is null)
+                return NotFound();
+
+            var response = new UserResponse
+            {
+                Id = user.Id.Value,
+                Email = user.Email.Value,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+            };
+
+            return Ok(response);
+        }
     }
 }
