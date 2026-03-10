@@ -6,5 +6,6 @@ namespace UserService.Core.Abstractions
     {
         Task<bool> EmailExistsAsync(Email email, CancellationToken cancellationToken = default);
         Task AddAsync(User user, CancellationToken cancellationToken = default);
+        Task<User?> GetByIdAsync(UserId id, CancellationToken cancellationToken);
     }
 }

@@ -24,5 +24,10 @@ namespace UserService.Infrastructure.Repositories
         {
             return await _dbContext.Users.AnyAsync(u => u.Email == email, cancellationToken);
         }
+
+        public async Task<User?> GetByIdAsync(UserId id, CancellationToken cancellationToken)
+        {
+            return await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+        }
     }
 }

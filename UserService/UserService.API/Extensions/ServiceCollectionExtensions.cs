@@ -8,8 +8,6 @@ namespace UserService.API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddSingleton<IUserRepository, InMemoryUserRepository>();
-
             return services;
         }
     }
