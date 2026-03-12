@@ -1,3 +1,4 @@
+using TransactionService.Infrastructure;
 
 namespace TransactionService.API
 {
@@ -7,11 +8,18 @@ namespace TransactionService.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
+            // Controllers
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+            // OpenAPI spec
             builder.Services.AddOpenApi();
+            builder.Services.AddEndpointsApiExplorer();
+
+            // Swagger UI
+            builder.Services.AddSwaggerGen();
+
+            // Infrastructure
+            builder.Services.AddInfrastructure(builder.Configuration);
 
             var app = builder.Build();
 
@@ -19,13 +27,17 @@ namespace TransactionService.API
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Transaction Service API");
+                    options.RoutePrefix = "swagger";
+                });
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
