@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TransactionService.Core.Abstractions;
+using TransactionService.Infrastructure.Clients;
 using TransactionService.Infrastructure.Persistence;
 using TransactionService.Infrastructure.Repositories;
 
@@ -19,6 +20,13 @@ namespace TransactionService.Infrastructure
             );
 
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+
+            var userServiceUrl = configuration["Services:UserService"];
+
+            services.AddHttpClient<UserServiceClient>(client =>
+            {
+                client.BaseAddress = new Uri(userServiceUrl!);
+            });
 
             return services;
         }
