@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TransactionService.API.Contracts;
+using TransactionService.Contracts;
 using TransactionService.Core.Abstractions;
 using TransactionService.Core.Transactions;
 

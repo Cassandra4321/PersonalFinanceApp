@@ -1,4 +1,4 @@
-﻿namespace TransactionServices.Contracts
+﻿namespace TransactionService.Contracts
 {
     internal class Program
     {
