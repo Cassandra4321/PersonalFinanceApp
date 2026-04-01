@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BuildingBlocks.Contracts.Users;
+using Microsoft.AspNetCore.Mvc;
 using UserService.Contracts.Users;
 using UserService.Core.Abstractions;
 using UserService.Core.Users;

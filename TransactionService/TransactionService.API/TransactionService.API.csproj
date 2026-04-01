@@ -19,6 +19,7 @@
     <ProjectReference Include="..\TransactionService.Contracts\TransactionService.Contracts.csproj" />
     <ProjectReference Include="..\TransactionService.Core\TransactionService.Core.csproj" />
     <ProjectReference Include="..\TransactionService.Infrastructure\TransactionService.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Contracts\BuildingBlocks.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
