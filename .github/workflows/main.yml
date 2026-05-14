@@ -17,26 +17,44 @@ jobs:
     # 🧾 .NET 9
     # ---------------------
     - name: Set up .NET 9
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
 
-    # ---------------------
-    # 🧱 Build UserService
-    # ---------------------
+    # =====================
+    # 👤 UserService
+    # =====================
     - name: Restore dependencies
       run: dotnet restore UserService/UserService.sln
 
     - name: Build project
       run: dotnet build UserService/UserService.sln --no-restore --configuration Release
 
+    # =====================
+    # 💸 TransactionService
+    # =====================
+    - name: Restore TransactionService
+      run: dotnet restore TransactionService/TransactionService.sln
+
+    - name: Build TransactionService
+      run: dotnet build TransactionService/TransactionService.sln --no-restore --configuration Release
+
+    # =====================
+    # 📊 BudgetService
+    # =====================
+    - name: Restore BudgetService
+      run: dotnet restore BudgetService/BudgetService.sln
+
+    - name: Build BudgetService
+      run: dotnet build BudgetService/BudgetService.sln --no-restore --configuration Release
+
     # ---------------------
     # ✅ Statusmeddelanden
     # ---------------------
     - name: Show success message
       if: success()
-      run: echo "✅ .NET 9 UserService build succeeded!"
+      run: echo "✅ All .NET 9 projects built successfully!"
 
     - name: Show failure message
       if: failure()
-      run: echo "❌ Build failed. Please check the logs."
+      run: echo "❌ One or more builds failed."
