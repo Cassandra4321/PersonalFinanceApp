@@ -1,3 +1,5 @@
+using MassTransit;
+using TransactionService.API.Consumers;
 using TransactionService.Infrastructure;
 
 namespace TransactionService.API
@@ -21,7 +23,41 @@ namespace TransactionService.API
             // Infrastructure
             builder.Services.AddInfrastructure(builder.Configuration);
 
+            // MassTransit
+            builder.Services.AddMassTransit(x =>
+            {
+                x.AddConsumer<UserCreatedConsumer>();
+
+                x.UsingRabbitMq(
+                    (context, cfg) =>
+                    {
+                        cfg.Host(
+                            "localhost",
+                            "/",
+                            h =>
+                            {
+                                h.Username("guest");
+                                h.Password("guest");
+                            }
+                        );
+
+                        cfg.ReceiveEndpoint(
+                            "user-created-event-queue",
+                            e =>
+                            {
+                                e.ConfigureConsumer<UserCreatedConsumer>(context);
+                            }
+                        );
+                    }
+                );
+            });
+
+            builder.Logging.AddConsole();
+
             var app = builder.Build();
+
+            var busControl = app.Services.GetRequiredService<IBusControl>();
+            Console.WriteLine("MassTransit bus resolved successfully.");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
+    <PackageReference Include="MassTransit" Version="9.1.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="9.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.14">
       <PrivateAssets>all</PrivateAssets>
@@ -14,12 +14,10 @@
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\TransactionService.Contracts\TransactionService.Contracts.csproj" />
     <ProjectReference Include="..\TransactionService.Core\TransactionService.Core.csproj" />
     <ProjectReference Include="..\TransactionService.Infrastructure\TransactionService.Infrastructure.csproj" />
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Contracts\BuildingBlocks.Contracts.csproj" />
   </ItemGroup>
-
 </Project>
