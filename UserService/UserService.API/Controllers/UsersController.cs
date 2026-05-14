@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Contracts;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using UserService.Contracts.Users;
 using UserService.Core.Abstractions;
@@ -12,10 +13,12 @@ namespace UserService.API.Controllers
     public sealed class UsersController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly IPublishEndpoint _publishEndpoint;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUserRepository userRepository, IPublishEndpoint publishEndpoint)
         {
             _userRepository = userRepository;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpPost]
@@ -44,6 +47,17 @@ namespace UserService.API.Controllers
             var user = DomainUser.Create(email, request.FirstName, request.LastName);
 
             await _userRepository.AddAsync(user, cancellationToken);
+
+            await _publishEndpoint.Publish(
+                new UserCreatedEvent
+                {
+                    Id = user.Id.Value,
+                    Email = user.Email.Value,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                },
+                cancellationToken
+            );
 
             var response = new UserResponse
             {
