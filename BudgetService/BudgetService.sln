@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetService.API", "BudgetService.API\BudgetService.API.csproj", "{91015C98-42B9-431C-BBD3-FA570D17CD70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetService.Core", "BudgetService.Core\BudgetService.Core.csproj", "{2580DBD7-2A7E-4D9F-89F8-DAD6F2DE6D5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetService.Infrastructure", "BudgetService.Infrastructure\BudgetService.Infrastructure.csproj", "{38A99AC7-712E-4E36-8F55-AC1845A1E4C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{91015C98-42B9-431C-BBD3-FA570D17CD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91015C98-42B9-431C-BBD3-FA570D17CD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91015C98-42B9-431C-BBD3-FA570D17CD70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2580DBD7-2A7E-4D9F-89F8-DAD6F2DE6D5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2580DBD7-2A7E-4D9F-89F8-DAD6F2DE6D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2580DBD7-2A7E-4D9F-89F8-DAD6F2DE6D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2580DBD7-2A7E-4D9F-89F8-DAD6F2DE6D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38A99AC7-712E-4E36-8F55-AC1845A1E4C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38A99AC7-712E-4E36-8F55-AC1845A1E4C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38A99AC7-712E-4E36-8F55-AC1845A1E4C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38A99AC7-712E-4E36-8F55-AC1845A1E4C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
