@@ -59,7 +59,7 @@ namespace TransactionService.API
             var busControl = app.Services.GetRequiredService<IBusControl>();
             Console.WriteLine("MassTransit bus resolved successfully.");
 
-            // Configure the HTTP request pipeline.
+            // HTTP request pipeline
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
