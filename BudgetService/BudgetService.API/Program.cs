@@ -1,4 +1,5 @@
-using BudgetService.API.Consumers;
+﻿using BudgetService.API.Consumers;
+using BudgetService.Infrastructure;
 using BudgetService.Infrastructure.Persistence;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
@@ -26,10 +27,14 @@ namespace BudgetService.API
             // Swagger UI
             builder.Services.AddSwaggerGen();
 
+            // Infrastructure
+            builder.Services.AddInfrastructure(builder.Configuration);
+
             // Masstransit
             builder.Services.AddMassTransit(x =>
             {
                 x.AddConsumer<UserCreatedConsumer>();
+                x.AddConsumer<TransactionCreatedConsumer>();
 
                 x.UsingRabbitMq(
                     (context, cfg) =>
@@ -49,6 +54,13 @@ namespace BudgetService.API
                             e =>
                             {
                                 e.ConfigureConsumer<UserCreatedConsumer>(context);
+                            }
+                        );
+                        cfg.ReceiveEndpoint(
+                            "budget-transaction-created-queue",
+                            e =>
+                            {
+                                e.ConfigureConsumer<TransactionCreatedConsumer>(context);
                             }
                         );
                     }
