@@ -16,7 +16,7 @@ namespace TransactionService.Infrastructure
         )
         {
             services.AddDbContext<TransactionDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("Database"))
+                options.UseSqlServer(configuration.GetConnectionString("TransactionServiceDb"))
             );
 
             services.AddScoped<ITransactionRepository, TransactionRepository>();

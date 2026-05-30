@@ -8,7 +8,7 @@ using TransactionService.Core.Transactions;
 namespace TransactionService.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/transactions")]
     public sealed class TransactionsController : ControllerBase
     {
         private readonly ITransactionRepository _repository;
@@ -24,6 +24,9 @@ namespace TransactionService.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(TransactionResponse), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TransactionResponse>> Create(
             CreateTransactionRequest request,
             CancellationToken cancellationToken
@@ -59,7 +62,21 @@ namespace TransactionService.API.Controllers
                 CreatedAt = transaction.CreatedAt,
             };
 
-            return Ok(response);
+            return CreatedAtAction(
+                nameof(Create),
+                new { id = transaction.Id },
+                MapToResponse(transaction)
+            );
         }
+
+        private static TransactionResponse MapToResponse(Transaction t) =>
+            new()
+            {
+                Id = t.Id,
+                UserId = t.UserId,
+                Amount = t.Amount,
+                Description = t.Description,
+                CreatedAt = t.CreatedAt,
+            };
     }
 }

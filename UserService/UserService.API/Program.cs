@@ -1,5 +1,4 @@
 using MassTransit;
-using UserService.API.Extensions;
 using UserService.Infrastructure;
 
 namespace UserService.API
@@ -10,12 +9,17 @@ namespace UserService.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Controllers & app services
-            builder.Services.AddApplicationServices();
+            // Controllers
             builder.Services.AddControllers();
-            builder.Services.AddInfrastructure(builder.Configuration).AddApplicationServices();
 
-            // MassTransit with RabbitMQ
+            // OpenAPI
+            builder.Services.AddOpenApi();
+            builder.Services.AddEndpointsApiExplorer();
+
+            // Infrastructure
+            builder.Services.AddInfrastructure(builder.Configuration);
+
+            // MassTransit
             builder.Services.AddMassTransit(x =>
             {
                 x.UsingRabbitMq(
@@ -33,10 +37,6 @@ namespace UserService.API
                     }
                 );
             });
-
-            // OpenAPI
-            builder.Services.AddOpenApi();
-            builder.Services.AddEndpointsApiExplorer();
 
             // Swagger
             builder.Services.AddSwaggerGen();

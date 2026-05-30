@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BudgetService.Infrastructure.Persistence;
 
-public class BudgetDbContext : DbContext
+public sealed class BudgetDbContext : DbContext
 {
     public BudgetDbContext(DbContextOptions<BudgetDbContext> options)
         : base(options) { }

@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BudgetService.Contracts\BudgetService.Contracts.csproj" />
     <ProjectReference Include="..\BudgetService.Core\BudgetService.Core.csproj" />
     <ProjectReference Include="..\BudgetService.Infrastructure\BudgetService.Infrastructure.csproj" />
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks.Contracts\BuildingBlocks.Contracts.csproj" />
