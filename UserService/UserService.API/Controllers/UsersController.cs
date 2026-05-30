@@ -59,15 +59,11 @@ namespace UserService.API.Controllers
                 cancellationToken
             );
 
-            var response = new UserResponse
-            {
-                Id = user.Id.Value,
-                Email = user.Email.Value,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-            };
-
-            return CreatedAtAction(nameof(CreateUser), response);
+            return CreatedAtAction(
+                nameof(GetUser),
+                new { id = user.Id.Value },
+                MapToResponse(user)
+            );
         }
 
         [HttpGet("{id:guid}")]
@@ -83,15 +79,16 @@ namespace UserService.API.Controllers
             if (user is null)
                 return NotFound();
 
-            var response = new UserResponse
+            return Ok(MapToResponse(user));
+        }
+
+        private static UserResponse MapToResponse(User user) =>
+            new()
             {
                 Id = user.Id.Value,
                 Email = user.Email.Value,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
             };
-
-            return Ok(response);
-        }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using BudgetService.API.Consumers;
 using BudgetService.Infrastructure;
-using BudgetService.Infrastructure.Persistence;
 using MassTransit;
-using Microsoft.EntityFrameworkCore;
 
 namespace BudgetService.API
 {
@@ -15,17 +13,9 @@ namespace BudgetService.API
             // Controllers
             builder.Services.AddControllers();
 
-            builder.Services.AddDbContext<BudgetDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("BudgetDb"));
-            });
-
             // OpenAPI
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
-
-            // Swagger UI
-            builder.Services.AddSwaggerGen();
 
             // Infrastructure
             builder.Services.AddInfrastructure(builder.Configuration);
@@ -67,14 +57,22 @@ namespace BudgetService.API
                 );
             });
 
+            // Swagger
+            builder.Services.AddSwaggerGen();
+
             var app = builder.Build();
 
-            // HTTP request pipeline
+            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "User Service API v1");
+                    options.RoutePrefix = "swagger";
+                });
             }
 
             app.UseHttpsRedirection();

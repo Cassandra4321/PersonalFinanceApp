@@ -1,5 +1,4 @@
 using MassTransit;
-using TransactionService.API.Consumers;
 using TransactionService.Infrastructure;
 
 namespace TransactionService.API
@@ -17,17 +16,12 @@ namespace TransactionService.API
             builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
 
-            // Swagger UI
-            builder.Services.AddSwaggerGen();
-
             // Infrastructure
             builder.Services.AddInfrastructure(builder.Configuration);
 
             // MassTransit
             builder.Services.AddMassTransit(x =>
             {
-                x.AddConsumer<UserCreatedConsumer>();
-
                 x.UsingRabbitMq(
                     (context, cfg) =>
                     {
@@ -40,24 +34,14 @@ namespace TransactionService.API
                                 h.Password("guest");
                             }
                         );
-
-                        cfg.ReceiveEndpoint(
-                            "user-created-event-queue",
-                            e =>
-                            {
-                                e.ConfigureConsumer<UserCreatedConsumer>(context);
-                            }
-                        );
                     }
                 );
             });
 
-            builder.Logging.AddConsole();
+            // Swagger UI
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-
-            var busControl = app.Services.GetRequiredService<IBusControl>();
-            Console.WriteLine("MassTransit bus resolved successfully.");
 
             // HTTP request pipeline
             if (app.Environment.IsDevelopment())

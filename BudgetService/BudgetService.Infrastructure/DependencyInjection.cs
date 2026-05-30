@@ -15,7 +15,7 @@ namespace BudgetService.Infrastructure
         )
         {
             services.AddDbContext<BudgetDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("BudgetDb"))
+                options.UseSqlServer(configuration.GetConnectionString("BudgetServiceDb"))
             );
             services.AddScoped<IBudgetRepository, BudgetRepository>();
             return services;
