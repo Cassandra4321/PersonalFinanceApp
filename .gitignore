@@ -30,3 +30,6 @@ dist/
 # IDE-specifika filer
 .vscode/
 .idea/
+
+# Docker
+.env
