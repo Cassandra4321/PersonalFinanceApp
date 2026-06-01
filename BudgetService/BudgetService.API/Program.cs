@@ -29,8 +29,9 @@ namespace BudgetService.API
                 x.UsingRabbitMq(
                     (context, cfg) =>
                     {
+                        var rabbitMqHost = builder.Configuration["RabbitMQ:Host"] ?? "localhost";
                         cfg.Host(
-                            "localhost",
+                            rabbitMqHost,
                             "/",
                             h =>
                             {
@@ -70,7 +71,7 @@ namespace BudgetService.API
                 app.UseSwagger();
                 app.UseSwaggerUI(options =>
                 {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "User Service API v1");
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "Budget Service API v1");
                     options.RoutePrefix = "swagger";
                 });
             }

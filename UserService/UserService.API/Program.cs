@@ -25,8 +25,9 @@ namespace UserService.API
                 x.UsingRabbitMq(
                     (context, cfg) =>
                     {
+                        var rabbitMqHost = builder.Configuration["RabbitMQ:Host"] ?? "localhost";
                         cfg.Host(
-                            "localhost",
+                            rabbitMqHost,
                             "/",
                             h =>
                             {
