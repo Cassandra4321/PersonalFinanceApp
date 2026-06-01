@@ -1,60 +1,41 @@
-name: Build .NET 9 project
-
+name: Build .NET projects
 on:
   pull_request:
     branches:
       - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-
     - name: Check out code
       uses: actions/checkout@v4
-    # ---------------------
-    # 🧾 .NET 9
-    # ---------------------
+
     - name: Set up .NET 9
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
 
-    # =====================
-    # 👤 UserService
-    # =====================
-    - name: Restore dependencies
+    # UserService
+    - name: Restore UserService
       run: dotnet restore UserService/UserService.sln
-
-    - name: Build project
+    - name: Build UserService
       run: dotnet build UserService/UserService.sln --no-restore --configuration Release
 
-    # =====================
-    # 💸 TransactionService
-    # =====================
+    # TransactionService
     - name: Restore TransactionService
       run: dotnet restore TransactionService/TransactionService.sln
-
     - name: Build TransactionService
       run: dotnet build TransactionService/TransactionService.sln --no-restore --configuration Release
 
-    # =====================
-    # 📊 BudgetService
-    # =====================
+    # BudgetService
     - name: Restore BudgetService
       run: dotnet restore BudgetService/BudgetService.sln
-
     - name: Build BudgetService
       run: dotnet build BudgetService/BudgetService.sln --no-restore --configuration Release
 
-    # ---------------------
-    # ✅ Statusmeddelanden
-    # ---------------------
     - name: Show success message
       if: success()
-      run: echo "✅ All .NET 9 projects built successfully!"
-
+      run: echo "All projects built successfully!"
     - name: Show failure message
       if: failure()
-      run: echo "❌ One or more builds failed."
+      run: echo "One or more builds failed."
