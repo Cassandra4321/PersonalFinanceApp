@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService.Contract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Contracts", "..\BuildingBlocks\BuildingBlocks.Contracts\BuildingBlocks.Contracts.csproj", "{E48615D8-B5BE-44DF-845D-9A8D6DE2C1F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionService.UnitTests", "TransactionService.UnitTests\TransactionService.UnitTests.csproj", "{1DE3B641-E296-4B36-87C6-DD3F282C9240}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{E48615D8-B5BE-44DF-845D-9A8D6DE2C1F6}.Release|x64.Build.0 = Release|Any CPU
 		{E48615D8-B5BE-44DF-845D-9A8D6DE2C1F6}.Release|x86.ActiveCfg = Release|Any CPU
 		{E48615D8-B5BE-44DF-845D-9A8D6DE2C1F6}.Release|x86.Build.0 = Release|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Debug|x64.Build.0 = Debug|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Debug|x86.Build.0 = Debug|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Release|x64.ActiveCfg = Release|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Release|x64.Build.0 = Release|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Release|x86.ActiveCfg = Release|Any CPU
+		{1DE3B641-E296-4B36-87C6-DD3F282C9240}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
