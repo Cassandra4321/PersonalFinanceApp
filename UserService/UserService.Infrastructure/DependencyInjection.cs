@@ -14,12 +14,18 @@ public static class DependencyInjection
         IConfiguration configuration
     )
     {
+        var connectionString = configuration.GetConnectionString("UserServiceDb");
+        var useInMemory = string.IsNullOrEmpty(connectionString);
+
         services.AddDbContext<UserDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("UserServiceDb"))
-        );
+        {
+            if (useInMemory)
+                options.UseInMemoryDatabase("UserServiceTestDb");
+            else
+                options.UseSqlServer(connectionString);
+        });
 
         services.AddScoped<IUserRepository, UserRepository>();
-
         return services;
     }
 }
